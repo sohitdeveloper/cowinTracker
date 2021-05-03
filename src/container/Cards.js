@@ -23,7 +23,14 @@ const Cards = ({ Datas }) => {
     marginLeft: "auto",
   };
   const address = { textAlign: "start", marginTop: "10px" };
-
+  const available = {
+    color: "white",
+    backgroundColor: "#ff6f62",
+    padding: "10px",
+    borderRadius: "9px",
+    fontSize: "16px",
+    fontFamily: "nunito",
+  };
   return (
     <div style={{ marginBottom: "40px" }}>
       {Datas &&
@@ -48,6 +55,7 @@ const Cards = ({ Datas }) => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Date</TableCell>
+                    <TableCell>Available Capacity</TableCell>
                     <TableCell align="right">Slot1</TableCell>
                     <TableCell align="right">Slot2</TableCell>
                     <TableCell align="right">Slot3</TableCell>
@@ -58,7 +66,10 @@ const Cards = ({ Datas }) => {
                   {res.sessions.map((row) => (
                     <TableRow key={row.date}>
                       <TableCell component="th" scope="row">
-                        {row.date}
+                        {row.date}{" "}
+                      </TableCell>
+                      <TableCell align="left">
+                        <span style={available}>{row.available_capacity}</span>
                       </TableCell>
                       {row.slots.map((slot) => (
                         <TableCell align="right">{slot}</TableCell>
