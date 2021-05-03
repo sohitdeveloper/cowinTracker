@@ -4,10 +4,19 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import Footer from "./Footer";
 import Cards from "./Cards";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const Home = () => {
   const [pinCode, setPinCode] = useState(0);
   const [Datas, setDatas] = useState();
+  const [open, setopen] = useState(false);
+  const [Type, setType] = useState("");
+  const [Message, setMessage] = useState("");
   const sendGetRequest = async () => {
     const obj = new Date();
     try {
@@ -16,14 +25,31 @@ const Home = () => {
           obj.getMonth() + 1
         }-${obj.getFullYear()}`
       );
-      //   console.log(resp.data);
+      // console.log(resp.data.centers);
+      if (resp.data.centers.length > 0) {
+        setopen(true);
+        setType("success");
+        setMessage("Data Found");
+      } else {
+        setopen(true);
+        setType("info");
+        setMessage(`Cowin data not available for this ${pinCode}`);
+      }
+
       setDatas(resp.data.centers);
     } catch (err) {
       // Handle Error Here
-      console.error(err);
+      // console.error(err);
+      setopen(true);
+      setType("error");
+      setMessage("Invalid Pincode");
     }
   };
-
+  const handleClose = () => {
+    setopen(false);
+    setType("");
+    setMessage("");
+  };
   const container = {
     display: "flex",
     flexDirection: "column",
@@ -72,6 +98,17 @@ const Home = () => {
       </div>
       <Cards Datas={Datas} />
       <Footer />
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        key={"top" + "right"}
+      >
+        <Alert onClose={handleClose} severity={Type}>
+          {Message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

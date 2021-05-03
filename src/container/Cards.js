@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 const Cards = ({ Datas }) => {
-  console.log(Datas);
+  // console.log(Datas);
   const feeType = {
     backgroundColor: "#20065f",
     color: "#ffffff",
