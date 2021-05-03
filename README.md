@@ -1,3 +1,0 @@
-# cowinTracker
-
-You can contribute....
