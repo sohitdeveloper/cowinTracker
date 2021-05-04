@@ -21,6 +21,7 @@ const Cards = ({ Datas }) => {
     fontSize: "20px",
     letterSpacing: "3px",
     marginLeft: "auto",
+    alignSelf: "center",
   };
   const address = { textAlign: "start", marginTop: "10px" };
   const available = {
@@ -31,6 +32,15 @@ const Cards = ({ Datas }) => {
     fontSize: "16px",
     fontFamily: "nunito",
   };
+  const age = {
+    color: "white",
+    backgroundColor: "#14948b",
+    padding: "10px",
+    borderRadius: "9px",
+    fontSize: "16px",
+    fontFamily: "nunito",
+  };
+
   return (
     <div style={{ marginBottom: "40px" }}>
       {Datas &&
@@ -56,6 +66,7 @@ const Cards = ({ Datas }) => {
                   <TableRow>
                     <TableCell>Date</TableCell>
                     <TableCell>Available Capacity</TableCell>
+                    <TableCell>Age</TableCell>
                     <TableCell align="right">Slot1</TableCell>
                     <TableCell align="right">Slot2</TableCell>
                     <TableCell align="right">Slot3</TableCell>
@@ -70,6 +81,9 @@ const Cards = ({ Datas }) => {
                       </TableCell>
                       <TableCell align="left">
                         <span style={available}>{row.available_capacity}</span>
+                      </TableCell>
+                      <TableCell align="left">
+                        <span style={age}>{row.min_age_limit}+</span>
                       </TableCell>
                       {row.slots.map((slot) => (
                         <TableCell align="right">{slot}</TableCell>
