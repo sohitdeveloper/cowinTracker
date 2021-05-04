@@ -46,7 +46,7 @@ const Cards = ({ Datas }) => {
                 <span style={feeType}>{res.fee_type}</span>
               </div>
               <div style={address}>
-                Address :- {res.block_name} , {res.district_name},{" "}
+                Address :-{res.address}, {res.block_name} , {res.district_name},{" "}
                 {res.state_name} ,{res.pincode}
               </div>
             </CardContent>
